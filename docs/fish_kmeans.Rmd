@@ -1,0 +1,12 @@
+---
+title: "fish_kmeans"
+author: "___"
+date: "2/19/2021"
+output: html_document
+---
+
+<!--- Consignes
+Ce document à pour objectif que vous réalisez un regroupement via la classification hiérarchique et un regroupement via les k-moyennes.
+
+Vous devrez ensuite comparer vos résultats obtenus entre vos deux approches et avec la variable `Species`.
+--->
