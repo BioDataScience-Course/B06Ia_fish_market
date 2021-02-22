@@ -6,7 +6,147 @@ output: html_document
 ---
 
 <!--- Consignes
-Ce document à pour objectif que vous réalisez un regroupement via la classification hiérarchique et un regroupement via les k-moyennes.
+Ce document a pour objectif de réaliser un regroupement via la classification hiérarchique et un regroupement via les k-moyennes. Comme vous le savez ces deux méthodes ont pour objectif de proposer des regroupements d'individus dans un tableau multivariée. 
+
+Vous devrez comparer vos résultats obtenu avec ces deux méthodes.
 
 Vous devrez ensuite comparer vos résultats obtenus entre vos deux approches et avec la variable `Species`.
 --->
+
+# Introduction
+
+<!--- Consignes
+Proposez une court paragraphe de 5 lignes qui explique la méthode de la classification hiérarchique.
+--->
+
+<!--- Consignes
+Proposez une court paragraphe de 5 lignes qui explique la méthode des k-moyennes.
+--->
+
+<!--- Consignes
+Proposez une court comparatif théoriquee des avantages et des inconvénients de chaque méthode.
+--->
+
+# Analyses
+
+<!--- Consignes 
+Importez les données. 
+Décrivez le données en répondant aux questions suivantes :
+
+- Combien d'observations comprend ce tableau de données ?
+- Combien y a t'il d'individus par espèce ? 
+- Combien y a t'il de variables qui permettent de caractériser les individus  de la variable `Species` ? 
+--->
+
+```{r import}
+
+```
+
+
+
+<!-- Proposez un tableau et un graphique pour explorer ce nouveau tableau de données. Décrivez votre tableau et vos graphiques en maximum 3 phrases. -->
+
+```{r tab}
+
+```
+
+```{r plot1}
+
+```
+
+
+## Regroupement via la CAH
+
+
+<!--- Consignes 
+Proposez 2 dendrogrammes. Vous avez la possibilité de travailler
+- sur la standardisation des données
+- sur le choix de l'indice de distance
+- sur le choix de la méthode de lien employée pour réaliser le dendrogramme 
+- sur les regroupements en coupant l'arbre à la hauteur souhaitée.
+
+Chaque stratégie employée pour réaliser vos dendrogrammes doit être explicitée. La description de votre dendrogramme doit permettre de comprendre les choix que vous avez pris.
+
+Vos descriptions ne doivent pas dépasser 5-7 phrases. 
+--->
+
+```{r dendro1}
+
+```
+
+```{r dendro2}
+
+```
+
+<!--- Consignes
+Vous devez extraire les regroupements obtenus de votre meilleur dendrogramme.
+--->
+
+```{r predict1}
+
+```
+
+<!--- G.E.
+Comparez vos résultats obtenus avec la classification proposées dans la variable `Species` via un tableau à double entrée. Décrivez les résultats obtenus en 5 à 7 phrases.
+--->
+
+```{r tab1}
+
+```
+
+
+## Regroupement via les k-moyennes
+
+<!--- Consignes 
+Proposez 2 regroupement via les k-moyennes. Vous avez la possibilité de travailler
+- sur la standardisation des données
+- sur le nombre de groupes
+
+Chaque stratégie employée pour réaliser vos regroupements doit être explicitée.
+Vos descriptions ne doivent pas dépasser 5-7 phrases. 
+--->
+
+```{r kmeangroup1}
+
+```
+
+```{r kmean1}
+
+```
+
+
+```{r kmeangroup2}
+
+```
+
+```{r kmean2}
+
+```
+
+
+<!--- Consignes
+Vous devez extraire les groupes obtenus de votre meilleures k-moyennes.
+--->
+
+```{r predict2}
+
+```
+
+<!--- G.E.
+Comparez vos résultats obtenus avec la classification proposées dans la variable `Species` via un tableau à double entrée. Décrivez les résultats obtenus en 5 à 7 phrases.
+--->
+
+```{r tab2}
+
+```
+
+
+## Comparaison des résultats obtenus.
+
+<!--- G.E.
+Comparez vos résultats obtenus avec la classification supervisée et avec les k-moyennes via un tableau à double entrée. Décrivez les résultats obtenus en 5 à 7 phrases.
+--->
+
+```{r tab3}
+
+```
