@@ -1,88 +1,59 @@
 ---
-title: "Les poissons couramment pêchés"
+title: "Étude de poissons par cartes auto-adaptatives"
 author: "___"
 date: "2/19/2021"
 output: html_document
 ---
 
-<!--- Consignes
-En partant du jeu de données Fish.csv, votre objectif est de réaliser une carte auto-adaptive. Cette méthode un outil particulièrement intéressant pour sa position hybride entre ordination (représentation sur des cartes) et classification (regroupement des individus).
---->
+<!-- En partant du jeu de données `Fish.csv`, votre objectif est de réaliser une carte auto-adaptative. Cette méthode est un outil particulièrement intéressant par sa position hybride entre ordination (représentation sur des cartes) et classification (regroupement des individus). -->
 
 # Introduction
 
-<!--- Consignes
-Expliquez en 5 lignes le principe des cartes auto-adaptatives.
---->
+<!-- Expliquez en 5 lignes le principe des cartes auto-adaptatives. -->
 
 # Analyses
 
-<!--- Consignes 
-Importez les données. 
---->
+<!-- Importez les données. -->
 
 ```{r import}
 
 ```
 
-<!--- Consignes
-Vous devez définir plusieurs paramètres afin de réaliser une cartes auto-adaptatives
+<!-- Vous devez définir plusieurs paramètres afin de réaliser une cartes auto-adaptatives
 
 - Faut il centrer les données ?
 - Quelle va être la taille de la grille utilisée ?
-- Va t'on préférer une grille rectangulaire ou hexagonale ?
+- Va-t-on préférer une grille rectangulaire ou hexagonale ?
 
-
-ps: n'oubliez pas que la fonction som() requiert une matrice comme argument et pas un tableau de données classique.
-
-Réalisez une carte auto-adaptative. Justifiez les choix que vous réalisez 
---->
+Réalisez une carte auto-adaptative. Justifiez les choix que vous faites. N'oubliez pas que la fonction som() requiert une matrice comme argument et pas un data frame classique. -->
 
 ```{r som}
 
 ```
 
-<!--- Consignes 
-Réalisez un premier graphique qui traite de la progression d'apprentissage de la carte auto-adaptatives. Utilisez l'argument type = "changes" dans la fonction plot(). 
-
-Commentez en 2 phrases le graphique.
---->
+<!-- Réalisez un premier graphique qui traite de la progression d'apprentissage de la carte auto-adaptatives. Utilisez l'argument type = "changes" dans la fonction plot(). Commentez en 2 phrases le graphique. -->
 
 ```{r somplot1}
 
 ```
 
-<!--- Consignes
-Réalisez un second graphique qui traite de l'importance des variables sur chaque cellule de la grille. Utilisez l'argument type = "codes" et l'argument codeRendering = "segments" dans la fonction plot().
-
-Commentez en 2 phrases le graphique.
---->
+<!-- Réalisez un second graphique qui traite de l'importance des variables sur chaque cellule de la grille. Utilisez l'argument type = "codes" et l'argument codeRendering = "segments" dans la fonction plot(). Commentez en 2 phrases le graphique. -->
 
 ```{r somplot2}
 
 ```
 
-<!--- Consignes
-Réalisez un troisième graphique qui traite du nombre d'observations par cellule de la grille. Utilisez l'argument type = "counts" et l'argument shape = "straight" dans la fonction plot().
-
-Commentez en 2 phrases le graphique.
---->
+<!-- Réalisez un troisième graphique qui traite du nombre d'observations par cellule de la grille. Utilisez l'argument type = "counts" et l'argument shape = "straight" dans la fonction plot(). Commentez en 2 phrases le graphique. -->
 
 ```{r somplot3}
 
 ```
 
-<!--- Consignes
-Réalisez un quatrième graphique qui traite de la répartition des observations par cellule de la grille. Utilisez l'argument type = "mapping" et l'argument shape = "straight" dans la fonction plot().
-
-Commentez en 2 phrases le graphique.
---->
+<!-- Réalisez un quatrième graphique qui traite de la répartition des observations par cellule de la grille. Utilisez l'argument type = "mapping" et l'argument shape = "straight" dans la fonction plot(). Commentez en 2 phrases le graphique. -->
 
 ```{r somplot4}
 
 ```
 
 
-<!--- Consignes
-Sur bases des 4 graphiques, proposez une description en 5 à 10 lignes 
---->
+<!-- Sur bases des 4 graphiques, analysez vos résultats en 5 à 10 lignes -->

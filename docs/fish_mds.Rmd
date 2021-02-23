@@ -1,76 +1,47 @@
 ---
-title: "Les poissons couramment pêchés"
+title: "Poissons frais du jour !"
 author: "___"
 date: "2/19/2021"
 output: html_document
 ---
 
-<!--- Consignes
-En partant du jeu de données Fish.csv, votre objectif est de reproduire le graphique se trouvant dans le dossier images à la racine de ce projet. La structure proposée dans ce document doit vous permettre de trouver la solution étape par étape.
-
-Les données sont standardisé, une matrice de distance est employée et il s'agit d'un MDS métrique.
---->
+<!-- En partant du jeu de données `Fish.csv`, votre objectif est de reproduire le graphique se trouvant dans le dossier images à la racine de ce projet. La structure proposée dans ce document va vous permettre de trouver la solution étape par étape. Les données sont standardisées, une matrice de distance est employée et une MDS métrique est ensuite utilisée. -->
 
 # Introduction
 
-<!--- Consignes
-Expliquez en 5 lignes le principe de positionnement multidimensionnel.
---->
+<!-- Expliquez en 5 lignes le principe de positionnement multidimensionnel. -->
 
 # Analyses
 
-<!--- Consignes 
-Importez les données. 
-Décrivez le données en répondant aux questions suivantes :
-
-- Combien d'observations comprend ce tableau de données ?
-- Combien y a t'il d'individus par espèce ? 
-- Combien y a t'il de variables qui permettent de caractériser les individus  de la variable `Species` ? 
---->
+<!-- Reprenez ici la description des données réalisée dans le document `fish_kmeans`. -->
 
 ```{r import}
 
 ```
 
-<!--- Consignes
-Calculez une matrice de distance euclidienne en standardisant au préalable vos données. 
-
-Pourquoi choisir une standardisation des données et une la distance euclidiènne ? Discutez du choix de l'auteur du graphique en 5 phrases.
---->
+<!-- Calculez une matrice de distance euclidienne en standardisant au préalable vos données. Pourquoi choisir une standardisation des données et une la distance euclidienne ? Discutez de ce choix en 5 phrases maximum. -->
 
 ```{r matrix}
 
 ```
 
-<!--- Consignes
-Réalisez un mds métrique réaliser une premier graphique automatique avec la fonction autoplot() 
---->
+<!-- Réalisez une MDS métrique puis un premier graphique avec la fonction `chart()` -->
 
 ```{r mds}
 
 ```
 
-<!--- Consignes
-Etudiez la qualité de l'ajustment (en anglais GOF : goodness-of-fit). Discutez de la qualité de l'ajustement de le MDS métrique en maximum 5 phrases.
---->
+<!-- Étudiez la qualité de l'ajustement (en anglais GOF : goodness-of-fit). Discutez de la qualité de l'ajustement de le MDS métrique en maximum 5 phrases. -->
 
 ```{r gof}
 
 ```
 
-<!--- Consignes
-Vous devez extraire les informations intéressantes de votre objet mds et l'ajouter à votre tableau fish de départ. Vous aurez ensuite toutes les informations nécessaires (valeur de mds2, valeur de la mds1 et les espèces). Il vous suffit de faire un nuage de points.
-
-Décrivez ce graphiques en maximum 5 phrases.
---->
+<!-- Vous devez extraire les informations intéressantes de votre objet mds et l'ajouter à votre tableau `fish` de départ pour rassembler les variables nécessaires (mds1, mds2 et Species). Faites ensuite un graphique en nuage de points. Décrivez ce graphiques en maximum 5 phrases. -->
 
 ```{r graph}
 
 ```
 
 
-<!--- Notes 
-En théorie, si vous avez suivi toutes les étapes vous avez du obtenir le même graphique que proposez dans le dossier images/ . Retenez bien cette logique qui peut vous permettre de visualiser les résultats des K-moyennes ou encore de la classification hiérarchique ascendantes.
-
-Vous êtes donc maintenant capable de combiner deux aproches des statistiques multivariées de regroupement et d'ordination.
---->
+<!-- Vérifiez que le graphique obtenu correspond bien à l'image -->

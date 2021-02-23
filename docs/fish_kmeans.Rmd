@@ -1,50 +1,31 @@
 ---
-title: "fish_kmeans"
+title: "Regroupement des poissons"
 author: "___"
 date: "2/19/2021"
 output: html_document
 ---
 
-<!--- Consignes
-Ce document a pour objectif de réaliser un regroupement via la classification hiérarchique et un regroupement via les k-moyennes. Comme vous le savez ces deux méthodes ont pour objectif de proposer des regroupements d'individus dans un tableau multivariée. 
-
-Vous devrez comparer vos résultats obtenu avec ces deux méthodes.
-
-Vous devrez ensuite comparer vos résultats obtenus entre vos deux approches et avec la variable `Species`.
---->
+<!-- En partant du jeu de données `Fish.csv`, réalisez un regroupement via CAH et un regroupement via les k-moyennes. Comparez vos résultats obtenu avec ces deux méthodes et avec la variable `Species`. -->
 
 # Introduction
 
-<!--- Consignes
-Proposez une court paragraphe de 5 lignes qui explique la méthode de la classification hiérarchique.
---->
-
-<!--- Consignes
-Proposez une court paragraphe de 5 lignes qui explique la méthode des k-moyennes.
---->
-
-<!--- Consignes
-Proposez une court comparatif théoriquee des avantages et des inconvénients de chaque méthode.
---->
+<!-- Proposez une court paragraphe qui explique la méthode de la classification ascendante hiérarchique, et un autre qui présente la méthode des k-moyennes. -->
 
 # Analyses
 
-<!--- Consignes 
-Importez les données. 
-Décrivez le données en répondant aux questions suivantes :
-
-- Combien d'observations comprend ce tableau de données ?
-- Combien y a t'il d'individus par espèce ? 
-- Combien y a t'il de variables qui permettent de caractériser les individus  de la variable `Species` ? 
---->
+<!-- 
+- Importez les données
+- Décrivez les données en répondant aux questions suivantes :
+    * Combien d'observations comprend ce tableau de données ?
+    * Combien y-a-t'il d'individus par espèce ? 
+    * Combien y-a-t'il de variables qui permettent de caractériser les espèces (mettez de côté la variable `Species` et ressortez-la ensuite pour comparaison) ? 
+-->
 
 ```{r import}
 
 ```
 
-
-
-<!-- Proposez un tableau et un graphique pour explorer ce nouveau tableau de données. Décrivez votre tableau et vos graphiques en maximum 3 phrases. -->
+<!-- Proposez un tableau et un graphique pour explorer ce jeu de données. Décrivez votre tableau et votre graphique en maximum 3 phrases. -->
 
 ```{r tab}
 
@@ -54,21 +35,18 @@ Décrivez le données en répondant aux questions suivantes :
 
 ```
 
-
 ## Regroupement via la CAH
 
+<!-- Proposez 2 dendrogrammes. Vous avez la possibilité de travailler sur :
+- la standardisation des données
+- le choix de l'indice de distance
+- le choix de la méthode de lien employée pour réaliser le dendrogramme
+- les regroupements en coupant l'arbre à la hauteur souhaitée
 
-<!--- Consignes 
-Proposez 2 dendrogrammes. Vous avez la possibilité de travailler
-- sur la standardisation des données
-- sur le choix de l'indice de distance
-- sur le choix de la méthode de lien employée pour réaliser le dendrogramme 
-- sur les regroupements en coupant l'arbre à la hauteur souhaitée.
+Chaque stratégie employée pour réaliser vos dendrogrammes doit être explicitée. La description de votre dendrogramme doit permettre de comprendre les choix que vous avez faits.
 
-Chaque stratégie employée pour réaliser vos dendrogrammes doit être explicitée. La description de votre dendrogramme doit permettre de comprendre les choix que vous avez pris.
-
-Vos descriptions ne doivent pas dépasser 5-7 phrases. 
---->
+Vos descriptions ne doivent pas dépasser 5-7 phrases.
+-->
 
 ```{r dendro1}
 
@@ -78,39 +56,33 @@ Vos descriptions ne doivent pas dépasser 5-7 phrases.
 
 ```
 
-<!--- Consignes
-Vous devez extraire les regroupements obtenus de votre meilleur dendrogramme.
---->
+<!-- Extrayez les regroupements obtenus de votre meilleur dendrogramme. -->
 
 ```{r predict1}
 
 ```
 
-<!--- G.E.
-Comparez vos résultats obtenus avec la classification proposées dans la variable `Species` via un tableau à double entrée. Décrivez les résultats obtenus en 5 à 7 phrases.
---->
+<!-- Comparez vos résultats avec la variable `Species` via un tableau de contingence à double entrée. Décrivez les résultats obtenus en 5 à 7 phrases. -->
 
 ```{r tab1}
 
 ```
 
-
 ## Regroupement via les k-moyennes
 
-<!--- Consignes 
-Proposez 2 regroupement via les k-moyennes. Vous avez la possibilité de travailler
-- sur la standardisation des données
-- sur le nombre de groupes
+<!-- Proposez 2 regroupement via les k-moyennes. Vous avez la possibilité de travailler sur :
+- la standardisation des données
+- le nombre de groupes
 
 Chaque stratégie employée pour réaliser vos regroupements doit être explicitée.
 Vos descriptions ne doivent pas dépasser 5-7 phrases. 
---->
+-->
 
 ```{r kmeangroup1}
 
 ```
 
-```{r kmean1}
+```{r kmeanplot1}
 
 ```
 
@@ -119,33 +91,27 @@ Vos descriptions ne doivent pas dépasser 5-7 phrases.
 
 ```
 
-```{r kmean2}
+```{r kmeanplot2}
 
 ```
 
 
-<!--- Consignes
-Vous devez extraire les groupes obtenus de votre meilleures k-moyennes.
---->
+<!-- Extrayez les groupes obtenus de votre meilleures k-moyennes. -->
 
 ```{r predict2}
 
 ```
 
-<!--- G.E.
-Comparez vos résultats obtenus avec la classification proposées dans la variable `Species` via un tableau à double entrée. Décrivez les résultats obtenus en 5 à 7 phrases.
---->
+<!-- Comparez vos résultats obtenus avec la variable `Species` via un tableau de contingence à double entrée. Décrivez les résultats obtenus en 5 à 7 phrases. -->
 
 ```{r tab2}
 
 ```
 
 
-## Comparaison des résultats obtenus.
+## Comparaison des deux méthodes
 
-<!--- G.E.
-Comparez vos résultats obtenus avec la classification supervisée et avec les k-moyennes via un tableau à double entrée. Décrivez les résultats obtenus en 5 à 7 phrases.
---->
+<!-- Comparez vos regroupements à l'aide de la CAH et des k-moyennes via un tableau de contingence à double entrée. Décrivez les résultats obtenus en 5 à 7 phrases. -->
 
 ```{r tab3}
 
