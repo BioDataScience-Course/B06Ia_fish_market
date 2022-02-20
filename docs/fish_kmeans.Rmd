@@ -1,52 +1,38 @@
 ---
-title: "Regroupement des poissons"
+title: "Regroupement de poissons en fonction de leurs caractéristiques"
 author: "___"
-date: "2/19/2021"
+date: "___"
 output: html_document
 ---
 
-<!-- En partant du jeu de données `Fish.csv`, réalisez un regroupement via CAH et un regroupement via les k-moyennes. Comparez vos résultats obtenu avec ces deux méthodes et avec la variable `Species`. -->
+<!--% En partant du jeu de données `Fish.csv`, réalisez un regroupement via CAH et un regroupement via les k-moyennes. Comparez vos résultats obtenu avec ces deux méthodes, ainsi qu'avec les informations contenues la variable `Species`. -->
 
 # Introduction
 
-<!-- Proposez une court paragraphe qui explique la méthode de la classification ascendante hiérarchique, et un autre qui présente la méthode des k-moyennes. -->
+<!--% Proposez un court paragraphe qui explique la méthode de la classification ascendante hiérarchique, et un autre qui présente la méthode des k-moyennes. -->
 
 # Analyses
 
-<!-- 
-- Importez les données
-- Décrivez les données en répondant aux questions suivantes :
-    * Combien d'observations comprend ce tableau de données ?
-    * Combien y-a-t'il d'individus par espèce ? 
-    * Combien y-a-t'il de variables qui permettent de caractériser les espèces (mettez de côté la variable `Species` et ressortez-la ensuite pour comparaison) ? 
--->
+<!--% Importez les données et décrivez-les, notamment: nombre d'observations, nombre d'individus par espèce, nombre de variables pouvant être utilisés pour caractériser les espèces ? -->
 
 ```{r import}
 
 ```
 
-<!-- Proposez un tableau et un graphique pour explorer ce jeu de données. Décrivez votre tableau et votre graphique en maximum 3 phrases. -->
+<!--% Proposez un tableau et un graphique pour explorer ce jeu de données. Interprétez votre tableau et votre graphique en maximum 3 phrases. -->
 
 ```{r tab}
 
 ```
 
-```{r plot1}
+```{r plot}
 
 ```
 
-## Regroupement via la CAH
+## Regroupement par CAH
 
-<!-- Proposez 2 dendrogrammes. Vous avez la possibilité de travailler sur :
-- la standardisation des données
-- le choix de l'indice de distance
-- le choix de la méthode de lien employée pour réaliser le dendrogramme
-- les regroupements en coupant l'arbre à la hauteur souhaitée
-
-Chaque stratégie employée pour réaliser vos dendrogrammes doit être explicitée. La description de votre dendrogramme doit permettre de comprendre les choix que vous avez faits.
-
-Vos descriptions ne doivent pas dépasser 5-7 phrases.
--->
+<!--% Proposez 2 dendrogrammes différents en travaillant sur travailler sur la standardisation des données, l'indice de distance, la méthode de lien et le niveau de coupure dans le dendrogramme -->
+<!--% Justifiez vos choix et interprétez vos dendrogrammes (maximum 7 phrases en tout. -->
 
 ```{r dendro1}
 
@@ -56,27 +42,22 @@ Vos descriptions ne doivent pas dépasser 5-7 phrases.
 
 ```
 
-<!-- Extrayez les regroupements obtenus de votre meilleur dendrogramme. -->
+<!--% Extrayez les regroupements obtenus de votre meilleur dendrogramme. -->
 
 ```{r predict1}
 
 ```
 
-<!-- Comparez vos résultats avec la variable `Species` via un tableau de contingence à double entrée. Décrivez les résultats obtenus en 5 à 7 phrases. -->
+<!--% Comparez vos résultats avec la variable `Species` via un tableau de contingence à double entrée. Analysez les résultats obtenus en 5 à 7 phrases. -->
 
 ```{r tab1}
 
 ```
 
-## Regroupement via les k-moyennes
+## Regroupement par les k-moyennes
 
-<!-- Proposez 2 regroupement via les k-moyennes. Vous avez la possibilité de travailler sur :
-- la standardisation des données
-- le nombre de groupes
-
-Chaque stratégie employée pour réaliser vos regroupements doit être explicitée.
-Vos descriptions ne doivent pas dépasser 5-7 phrases. 
--->
+<!--% Proposez 2 regroupement via les k-moyennes. Vous pouvez faire varier la standardisation des données, les centres choisis au départ, le nombre de groupes (et éventuellement l'algorithme). -->
+<!--% Explicitez vos choix et interprétez l'analyse, le tout en 5-7 phrases maximum. -->
 
 ```{r kmeangroup1}
 
@@ -96,13 +77,13 @@ Vos descriptions ne doivent pas dépasser 5-7 phrases.
 ```
 
 
-<!-- Extrayez les groupes obtenus de votre meilleures k-moyennes. -->
+<!--% Extrayez les groupes obtenus de votre meilleures k-moyennes. -->
 
 ```{r predict2}
 
 ```
 
-<!-- Comparez vos résultats obtenus avec la variable `Species` via un tableau de contingence à double entrée. Décrivez les résultats obtenus en 5 à 7 phrases. -->
+<!--% Comparez vos résultats obtenus avec la variable `Species` via un tableau de contingence à double entrée. Analyses les résultats en 5 à 7 phrases. -->
 
 ```{r tab2}
 
@@ -111,8 +92,10 @@ Vos descriptions ne doivent pas dépasser 5-7 phrases.
 
 ## Comparaison des deux méthodes
 
-<!-- Comparez vos regroupements à l'aide de la CAH et des k-moyennes via un tableau de contingence à double entrée. Décrivez les résultats obtenus en 5 à 7 phrases. -->
+<!--% Comparez vos regroupements à l'aide de la CAH et des k-moyennes via un tableau de contingence à double entrée. Analysez cela en 5 à 7 phrases. -->
 
 ```{r tab3}
 
 ```
+
+<!--% vérifiez que votre document compile à la fin (bouton 'Knit') -->
