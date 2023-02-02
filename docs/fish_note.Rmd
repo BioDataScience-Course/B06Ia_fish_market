@@ -5,7 +5,7 @@ date: "___"
 output: html_document
 ---
 
-<!--% En partant du jeu de données `Fish.csv`, réalisez un regroupement via CAH et un regroupement via les k-moyennes. Comparez vos résultats obtenu avec ces deux méthodes, ainsi qu'avec les informations contenues la variable `Species`. -->
+<!--% En partant du jeu de données `Fish.csv`, réalisez un regroupement via CAH et un regroupement via les k-moyennes. Comparez vos résultats obtenus avec ces deux méthodes, ainsi qu'avec les informations contenues dans la variable `Species`. -->
 
 # Introduction
 
@@ -37,7 +37,7 @@ Ce travail a pour objectif de comparer les regroupements réalisés via la class
 
 ## Regroupement par CAH
 
-<!--% Proposez 2 dendrogrammes différents. Vous pouvez faire travailler sur la standardisation des données, le choix de indices de distance, le choix de la méthode de lien et le niveau de coupure dans le dendrogramme.-->
+<!--% Proposez 2 dendrogrammes différents. Vous pouvez faire travailler sur la standardisation des données, le choix d’indices de distance, le choix de la méthode de lien et le niveau de coupure dans le dendrogramme..-->
 
 ### Dendrogramme 1
 
@@ -89,7 +89,7 @@ Ce travail a pour objectif de comparer les regroupements réalisés via la class
 
 ## Regroupement par les k-moyennes
 
-<!--% Proposez 2 regroupement via les k-moyennes. Vous pouvez faire varier la standardisation des données, les centres choisis au départ, le nombre de groupes (et éventuellement l'algorithme). -->
+<!--% Proposez 2 regroupements via les k-moyennes. Vous pouvez faire varier la standardisation des données, les centres choisis au départ, le nombre de groupes (et éventuellement l'algorithme). -->
 
 ### Regroupement par les K-moyennes 1
 
