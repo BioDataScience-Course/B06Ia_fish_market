@@ -1,31 +1,24 @@
-# Les poissons rencontrés sur le marché matinal
+# Poissons rencontrés sur le marché matinal
 
-## Avant-propos
+## Présentation des données
 
-Les consignes reprises dans ce document, ainsi que dans les différents fichiers sont susceptibles d'évoluer. Vérifiez le lien suivant afin de voir si des modifications n'y ont pas été apportées : <https://github.com/BioDataScience-Course/B06Ia_fish_market>.
-
-Avant d'aborder ce projet, assurez-vous d'avoir bien compris le contenu du [module 6](https://wp.sciviews.org/sdd-umons2/?iframe=wp.sciviews.org/sdd-umons2-2021/k-moyenne-mds-som.html) du cours de SDD II.
+Les données employées sont mise à disposition via le site Kaagle : <https://www.kaggle.com/datasets/aungpyaeap/fish-market>. Il s'agit de mesures biométriques sur 7 espèces de poissons que l'on retrouvé sur un marché au poisson.
 
 ## Objectifs
 
-Ce projet est individuel et cadré. Il doit être terminé pour la fin du module 6. Ce dernier permettra de démontrer que vous avez acquis les compétences suivantes :
+Ce projet est individuel et cadré. Il doit vous permettre de démontrer les compétences suivantes :
 
-- être capable d'utiliser et d'interpréter une analyse par les k-moyennes
-- comparer les méthodes des k-moyennes et la classification ascendante hiérarchique
-- être capable d'utiliser et d'interpréter le positionnement multidimensionnel
-- Associer des méthodes d'ordinations et de classifications
-- Utiliser et interpréter les cartes auto-adaptatives
+-   Calculer des matrices de distance avec un indice de distance sélectionné judicieusement.
+-   être capable de réaliser et d'interpréter des dendrogrammes avec la méthode de liens la plus adéquates
+-   être capable d'utiliser et d'interpréter une analyse par les k-moyennes
+-   comparer les méthodes des k-moyennes et la classification ascendante hiérarchique
 
 ## Consignes
 
-**Partie I :** complétez le fichier `fish_kmeans.Rmd` afin de comparer les résultats obtenu avec la classification hiérarchique ascendantes et les k-moyennes.
+Réalisez une exploration multivariée du observation biométrique de poissons. Complétez le fichier `docs/fish_note.Rmd`.
 
-**Partie II :** complétez le fichier `fish_mds.Rmd` afin de reproduire le graphique ci-dessous.
-
-![](images/fish_mds.png){width='60%'}
-
-**Partie III :** complétez le fichier `fish_som.Rmd` pour explorer les cartes auto-adaptatives.
-
-N'hésitez pas à ajouter un ou plusieurs scripts R dans le sous-dossier `R` et à  **sourcer** ces fonctions dans vos documents R Markdown pour réaliser vos analyses (pour obtenir le code à partir du cours, vous devrez peut-être dérouler des sections intitulées "voir le code" !) Cette étape est indispensable pour bénéficier des mêmes fonctions que celles du cours !
+Lorsque vous aurez terminé de compléter le fichier, compilez ce dernier en HTML (bouton **Knit)** et assurez-vous que la compilation s'est faites sans erreurs, sinon, apportez les corrections nécessaires. Dans votre commit - push final, assurez-vous d'avoir un fichiers .Rmd qui compile correctement. Cela fait partie de l'exercice. Vérifiez que votre dernier commit a bien été pushé sur GitHub avant la fin de la séance.
 
 N'oubliez pas de "knitter" vos documents en HTML à la fin pour vérifier que tout fonctionne bien, et corrigez les erreurs éventuelles rencontrées à ce stade avant de clôturer votre travail.
+
+Ce projet correspond au template <https://github.com/BioDataScience-Course/B06Ia_fish_market>
