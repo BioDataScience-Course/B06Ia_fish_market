@@ -26,9 +26,9 @@ summary(fish)
 fish <- sfilter(fish, weight > 0)
 
 # Ajout des labels -----
-## Les longueur sont en centimètre et la masse en grammes
+## Les longueurs sont en centimètres et la masse en grammes
 # TODO
 
-# Sauvegarde du tableaux
+# Sauvegarde du tableau
 write$rds(fish, "data/fish.rds", compress = "xz")
 
