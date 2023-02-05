@@ -5,11 +5,11 @@ date: "___"
 output: html_document
 ---
 
-<!--% En partant du jeu de données `Fish.csv`, réalisez un regroupement via CAH et un regroupement via les k-moyennes. Comparez vos résultats obtenus avec ces deux méthodes, ainsi qu'avec les informations contenues dans la variable `Species`. -->
+<!--% En partant du jeu de données `fish.rds` dans le dossier `data`, réalisez un regroupement via CAH et via les k-moyennes. Comparez vos résultats obtenus avec ces deux méthodes, ainsi qu'avec les informations contenues dans la variable `Species`. -->
 
 # Introduction
 
-<!--% Proposez un paragraphe qui explique la méthode de la classification ascendante hiérarchique, et un autre qui présente la méthode des k-moyennes. -->
+<!--% Rédigez un paragraphe qui explique la méthode de la classification ascendante hiérarchique, et un autre qui présente la méthode des k-moyennes. -->
 
 # But
 
@@ -23,7 +23,7 @@ Ce travail a pour objectif de comparer les regroupements réalisés via la class
 
 ```
 
-<!--% Proposez un tableau et un graphique pour explorer ce jeu de données.-->
+<!--% Explorez les données à l'aide d'un tableau et un graphique.-->
 
 ```{r tab}
 
@@ -37,7 +37,7 @@ Ce travail a pour objectif de comparer les regroupements réalisés via la class
 
 ## Regroupement par CAH
 
-<!--% Proposez 2 dendrogrammes différents. Vous pouvez faire travailler sur la standardisation des données, le choix d’indices de distance, le choix de la méthode de lien et le niveau de coupure dans le dendrogramme..-->
+<!--% Réalisez deux dendrogrammes différents. Vous pouvez faire varier l'analyse en jouant sur la transformation des données, le choix de l'indice de distance, le choix de la méthode de lien et le niveau de coupure dans le dendrogramme. -->
 
 ### Dendrogramme 1
 
@@ -71,7 +71,7 @@ Ce travail a pour objectif de comparer les regroupements réalisés via la class
 
 <!--% Justifiez vos choix et interprétez le dendrogramme (maximum 5 phrases). -->
 
-### Comparaison entre la CAH et la variable relative aux espèces
+### Comparaison entre la CAH et la variable Species
 
 <!--% Extrayez les regroupements obtenus de votre meilleur dendrogramme. -->
 
@@ -89,7 +89,7 @@ Ce travail a pour objectif de comparer les regroupements réalisés via la class
 
 ## Regroupement par les k-moyennes
 
-<!--% Proposez 2 regroupements via les k-moyennes. Vous pouvez faire varier la standardisation des données, les centres choisis au départ, le nombre de groupes (et éventuellement l'algorithme). -->
+<!--% Réalisez deux regroupements via les k-moyennes. Vous pouvez moduler votre analyse en jouant sur la transformation des données, le nombre de groupes, le choix des centres de départ (et éventuellement l'algorithme). -->
 
 ### Regroupement par les K-moyennes 1
 
@@ -123,7 +123,7 @@ Ce travail a pour objectif de comparer les regroupements réalisés via la class
 
 <!--% Justifiez vos choix et interprétez le graphique (maximum 5 phrases). -->
 
-### Comparaison entre les k-moyennes et la variable relative aux espèces
+### Comparaison entre les k-moyennes et la variable Species
 
 <!--% Extrayez les groupes obtenus de votre meilleur regroupement par les k-moyennes. -->
 
@@ -131,7 +131,7 @@ Ce travail a pour objectif de comparer les regroupements réalisés via la class
 
 ```
 
-<!--% Comparez vos résultats avec la variable `species` via un tableau de contingence à double entrée.-->
+<!--% Comparez vos résultats avec la variable `Species` via un tableau de contingence à double entrée.-->
 
 ```{r tab2}
 
@@ -149,4 +149,4 @@ Ce travail a pour objectif de comparer les regroupements réalisés via la class
 
 <!--% Décrivez le tableau de contingence en 3 à 5 phrases. -->
 
-<!--% vérifiez que votre document compile à la fin (bouton 'Knit') -->
+<!--# vérifiez que votre document compile à la fin (bouton 'Knit') -->
