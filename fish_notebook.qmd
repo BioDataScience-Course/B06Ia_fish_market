@@ -1,0 +1,439 @@
+---
+title: "Regroupement de poissons en fonction de leurs tailles"
+author: "___"
+date: "`r Sys.Date()`"
+format:
+  html:
+    code-fold: true
+    code-tools: true
+    toc: true
+editor: visual
+lang: fr
+editor_options: 
+  chunk_output_type: inline
+---
+
+# Introduction et but
+
+La valeur d'un poisson sur un marché dépend de son espèce mais aussi de la quantité de chair, et donc de sa taille. À partir de différentes mesures classiques réalisées sur les poissons (masse et différentes longueurs), nous voudrions trier les animaux en différentes catégories. Par ailleurs, une fois ce tri fait, nous voudrions déterminer si les catégories obtenues correspondent aussi aux espèces. Pour cela, nous allons utiliser deux méthodes de regroupement : la classification ascendante hiérarchique (CAH) et les k-moyennes. Nous allons aussi, ce faisant, comparer ces deux méthodes statistiques.
+
+# Matériel et méthodes
+
+Le jeu de données est issu de <https://www.kaggle.com/datasets/vipullrathod/fish-market/data> ou il est disponible sous licence CC0 (domaine public). L'origine précise des données et le ou les auteurs des mesures ne sont pas connus.
+
+Nous utilisons deux techniques statistiques pour regrouper les poissons en fonction de leurs caractéristiques morphologiques : la classification ascendante hiérarchique (CAH) et les k-moyennes. L'analyse est réalisée avec le logiciel R (`r R.version.string`) et en particulier le package {exploreit} version `r packageVersion("exploreit")` dans la [SciViews Box 2023](https://www.sciviews.org/software/svbox/). [Saturn Cloud](https://saturncloud.io/) (Linux Ubuntu 22.04) est utilisé pour exécuter le code et compiler ce bloc-notes.
+
+# Résultats
+
+```{r setup, include=FALSE}
+# Ceci est nécessaire pour les tests SDD, ne pas utiliser dans un "vrai" projet
+if (!"tools:tests" %in% search())
+  source(here::here("tests/tools_tests.R"), attach(NULL, name = "tools:tests"))
+
+# Configuration de l'environnement SciViews::R
+SciViews::R(___, lang = "fr")
+```
+
+<!--% Importez les données depuis `fish.rds` dans le dossier `data` et assignez le résultat à `fish`.-->
+
+```{r import, record='RODFS', object='fish'}
+fish <- read(___)
+```
+
+Notre jeu de donnée comporte sept variables (premières et dernière lignes du jeu de données dans le tableau suivant).
+
+<!--% Réalisez un tableau de type "headtail" sur `fish`. -->
+
+```{r tab, record='RNP', arg='col_keys'}
+tabularise$___
+```
+
+## Étude descriptive
+
+Voici la description des différentes variables de notre jeu de données.
+
+<!--% Utilisez la fonction skimr::skim() pour avoir une vision globale sur les données. -->
+
+```{r skim}
+___
+```
+
+<!--% Interprétez votre tableau ci-dessous. -->
+
+```{r skimcomment, output='asis'}
+select_answer(r"-{
+[] -   Le jeu de données contient une variable qualitative (species) et six variables quantitatives.
+[] -   Il y a des valeurs manquantes.
+[] -   Le jeu de données est complet, sans valeurs manquantes.
+[] -   Sept espèces de poissons ont été mesurées.
+[] -   Les distributions des variables quantitatives sont unimodales.
+[] -   Les distributions des variables quantitatives sont bimodales.
+[] -   Les distributions des variables quantitatives sont multimodales.
+[] -   Les distributions sont à peu près symétriques.
+[] -   Les distributions sont asymétiques.
+[] -   Les distributions sont à peu près symétriques sauf pour la masse.}-")
+```
+
+La variation de masse en fonction de la taille totale pour les sept espèces de poissons est représentée ci-dessous.
+
+<!--% Faites le graphique de la masse en fonction de la longueur totale en utilisant la couleur pour l'espèce à partir de `fish`. -->
+
+```{r plot1, record='RNP', arg='labels'}
+chart(data = fish, ___) +
+  ___
+```
+
+<!--# À ce stade, vous pouvez aussi essayer des transformations des données et visualiser les graphiques d'autres pairs de variables pour vous faire une idée, mais ne conservez pas ces essais dans le document final. -->
+
+<!--% Interprétez votre graphique ci-dessous. -->
+
+```{r plot1comment, output='asis'}
+select_answer(r"-{
+[] -   Le nuage de points est à peu près linéaire.
+[] -   Le nuage de points est curvilinéaire.
+[] -   Les espèces se séparent bien les unes des autres sur le graphique.
+[] -   Les espèces ne se séparent pas bien les unes des autres sur le graphique.
+[] -   Les espèces ne se séparent pas bien les unes des autres sur le graphique sauf pour le brochet (Pike).
+[] -   Aucune transformation des données n'est nécessaire.
+[] -   Une transformation double-log devrait linéariser le nuage de points et est indispensable pour nos analyses.
+[] -   Une standardisation des données doit être réalisée car les valeurs entre variables sont très différentes et les unités incompatibles.
+[] -  Nous devons transformer les données à la fois en log (linéarisation du nuage de point) et avec une standardisation pour la suite de nos analyses.}-")
+```
+
+## Regroupement par CAH
+
+Nous réalisons différents regroupements par CAH et ne conservons que les deux meilleurs ci-dessous.
+
+### CAH 1
+
+Notre premier regroupement par CAH est réalisé sur des données standardisées à l'aide de la distance de Manhattan et des liens Ward D2.
+
+<!--% Regroupez les observations par CAH sans la variable `species` et placez le résultat dans `fish_clust1`. Utilisez une métrique de Manhattan après standardisation et une agglomération par Ward D2. -->
+
+```{r cluster1, record='ROP', object='fish_clust1', arg='metric,method,scale'}
+sselect(___) %>.%
+  dissimilarity(data = ___, ___, ___, ___) %>.%
+  cluster(., ___) ->
+  fish_clust1
+```
+
+<!--% Tracez le dendrogramme de ce premier regroupement `fish_clust1`. N'affichez pas les labels de l'axe X et indiquez "Hauteur" pour l'axe Y. Ajouter un trait horizontal rouge pour indiquer une coupure en cinq groupes qui est le niveau de coupure que vous retiendrez ici. -->
+
+<!--# Testez aussi d'autres combinaisons scale = TRUE/FALSE vs métrique vs méthode de lien pour voir l'effet sur le dendrogramme obtenu. À la fin, nettoyez vos essais et gardez seulement la version scale = TRUE, "euclidean" et "ward.D2" dans le document final. -->
+
+```{r dendro1, record='RNP', arg='labels'}
+chart(___) +
+  ___
+```
+
+<!--% Interprétez cette analyse. -->
+
+```{r dendro1comment, output='asis'}
+select_answer(r"-{
+[] -   Le dendrogramme ne sépare pas bien les groupes.
+[] -   Le dendrogramme sépare bien 2, 3 et 4 groupes.
+[] -   Le dendrogramme sépare bien 2, 3, 4 et 5 groupes.
+[] -   Le dendrogramme sépare bien 2, 4 et 5 groupes.
+[] -   Le dendrogramme sépare bien 2, 3, 4, 5, 6 et 7 groupes.
+[] -   Le dendrogramme sépare bien 2, 3, 4 et 7 groupes.}-")
+```
+
+### CAH 2
+
+Nous tentons un regroupement CAH alternatif, à partir des distances euclidiennes sur des données standardisées. Les liens utilisés sont, cette fois-ci, les liens complets.
+
+<!--% Effectuez un autre regroupement par CAH de `fish`, toujours sans la variable `species`. Standardisez les données, utilisez une métrique euclidienne et une agglomération par liens complets. Placez le résultat du calcul dans `fish_clust2`. -->
+
+```{r cluster2, record='ROP', object='fish_clust2', arg='metric,method,scale'}
+___ ->
+  fish_clust2
+```
+
+<!--% Tracez le dendrogramme de `fish_clust2` avec les mêmes caractéristiques que le précédent. Choisissez le niveau de coupure pour obtenir sept groupes (niveau de coupure retenu). -->
+
+```{r dendro2, record='RNP', arg='labels'}
+chart(___) +
+  ___
+```
+
+<!--% Interprétez cette analyse. -->
+
+```{r dendro2comment, output='asis'}
+select_answer(r"-{
+[] -   Le dendrogramme ne sépare pas bien les groupes.
+[] -   Le dendrogramme sépare bien 2, 3 et 4 groupes.
+[] -   Le dendrogramme sépare bien 2, 3, 4 et 5 groupes.
+[] -   Le dendrogramme sépare bien 2, 4 et 5 groupes.
+[] -   Le dendrogramme sépare bien 2, 3, 4, 5, 6 et 7 groupes.
+[] -   Le dendrogramme sépare bien 2, 3, 4 et 7 groupes.}-")
+```
+
+<!--# Notez ceci : dans les deux cas, nous avons choisi le nombre le plus important de groupes qui donnent encore des sauts importants dans le dendrogramme. Cependant, ce n'est pas toujours le choix à faire dans tous les cas. Les regroupements à trois ou quatre sont intéressants aussi ici, par exemple. Mais comme nous avons sept espèces aussi, nous retenons le nombre de groupes le plus proche de cette valeur. -->
+
+Les regroupements des deux CAH sont ajoutés dans le jeu de données `fish_cah`.
+
+<!--% Partez de `fish` et dans un pipeline. Augmentez ce tableau des groupes du premier regroupement `fish_clust1`. Renommez la variable `.fitted` ainsi créée en `cah1`. Ensuite faite de même pour le second regroupement `fish_clust2` avec une nouvelle variable `cah2`. Finissez votre pipeline en transformant `cah1` et `cah2` en variables facteurs. Assignez le résultat à `fish_cah`. Vérifiez que vous utilisez les mêmes niveaux de coupure que dans vos dendrogrammes ci-dessus. -->
+
+```{r fishcah, record='RODFS', object='fish_cah'}
+fish %>.%
+  augment(data = ___, ___, ___) %>.%
+  srename(., ___) %>.%
+  augment(., ___) %>.%
+  srename(., ___) %>.%
+  smutate(., ___) ->
+  fish_cah
+```
+
+### Comparaison des deux regroupements CAH
+
+Le tableau de contingence suivant compare les deux regroupements.
+
+<!--% Réalisez une table de contingence qui compare les groupes de "cah1" en lignes et de "cah2" en colonnes (avec ces noms-là). -->
+
+```{r compacah, record='RNA', arg='class,dim,dimnames'}
+table(___ = ___, ___ = ___)
+```
+
+<!--% Interprétez ce tableau. -->
+
+```{r compacahcomment, output='asis'}
+select_answer(r"-{
+[] -   Les groupes obtenus par les deux CAH sont cohérents.
+[] -   Les groupes obtenus par les deux CAH sont totalement différents.
+[] -   Les groupes obtenus par les deux CAH sont en accord tenant compte du fait qu'il y a plus de groupes dans CAH 2.
+[] -   Les groupes obtenus par CAH 1 se répartissent à chaque fois dans deux groupes différents de CAH 2, sauf pour le cinquième. Ces deux regroupements sont donc partiellement différents.}-")
+```
+
+Ci-dessous, une visualisation des regroupements CAH 1 et CAH 2 pour les variables de longueur totale et de masse..
+
+<!--% Visualisez le regroupement de CAH 1 sur un graphique en nuage de points de la masse en fonction de la taille totale en utilisant la couleur pour représenter le regroupement obtenu. -->
+
+<!--# Vous pouvez aussi regarder ce que cela donne avec d'autres pairs de variables pour bien visualiser le processus de regroupement, mais effacez ces essais du document final. -->
+
+```{r plotcah1, record='RNP', arg='labels'}
+chart(___) +
+  ___
+```
+
+<!--% Faites de même pour la CAH 2. -->
+
+```{r plotcah2, record='RNP', arg='labels'}
+chart(___) +
+  ___
+```
+
+<!--% Comparez ces deux graphiques. -->
+
+```{r plotcahcomment, output='asis'}
+select_answer(r"-{
+[] -   Le regroupement CAH1 représente mieux la distribution des données sur ce graphique.
+[] -   Le regroupement CAH2 représente mieux la distribution des données sur ce graphique.
+[] -   La CAH n'est pas très efficace lorsque le nuage de point s'étale de manière continue. Elle a tendance à saucisonner la distribution en sections de longueurs similaires.}-")
+```
+
+### Comparaison entre les CAH et la variable species
+
+Les tableaux de contingence qui suivent comparent les groupes obtenus avec la CAH 1 et la CAH 2 aux espèces.
+
+<!--% Comparez le regroupement obtenu à partir de la CAH 1 avec la variable `species` dans un tableau de contingence (noms = "espèce" pour les lignes et "cah1" pour les colonnes du tableau). -->
+
+```{r compacah1sp, record='RNA', arg='class,dim,dimnames'}
+___
+```
+
+<!--% Faites de même pour CAH 2. -->
+
+```{r compacah2sp, record='RNA', arg='class,dim,dimnames'}
+___
+```
+
+<!--% Interprétez ces deux tableaux de contingence. -->
+
+```{r compacahspcomment, output='asis'}
+select_answer(r"-{
+[] -   Les deux CAH forment des groupes assez représentatifs des espèces.
+[] -   Seule la première CAH a des groupes représentatifs des espèces.
+[] -   Seule la seconde CAH a des groupes représentatifs des espèces.
+[] -  Aucune des deux CAH n'a réalisé des regroupement représentatifs des différentes espèces.
+[] -   La classification non supervisée apparaît comme une technique efficace pour classer dans des groupes connus d'avance.
+[] -   La classification non supervisée n'est pas la technique la plus adaptée pour classer dans des groupes connus d'avance.}-")
+```
+
+## Regroupement par les k-moyennes
+
+Nous allons maintenant effectuer une analyse similaire, mais en utilisant la méthode des k-moyennes.
+
+Contrairement à la fonction `dissimilarity()` qui possède un argument `scale =` pour standardiser les données, la fonction `k_means()` n'offre pas cette possibilité. Nous devons donc créer nous-même un tableau de données standardisées avant de réaliser notre analyse k-moyennes.
+
+### Préparation des données
+
+Un jeu contenant uniquement les données numériques standardisées est créé.
+
+<!--% À partir des données de `fish` dont vous éliminez la colonne `species`, calculez les variables standardisées (moyenne = 0, écart type = 1) à l'aide de `scale()`. Ensuite relabélisez correctement les variables et placez le résultat dans `fish_scaled`. -->
+
+```{r prepakmn, record='RODFS', object='fish_scaled'}
+sselect(___) %>.%
+  ___(.) %>.%
+  labelise(., label = list(
+    weight          = "Masse standardisée",
+    standard_length = "Longueur standard standardisée",
+    fork_length     = "longueur à la fourche standardisée",
+    total_length    = "Longueur totale standardisée",
+    height          = "Hauteur standardisée",
+    width           = "Largeur standardisée")
+  ) ->
+  fish_scaled
+tabularise$headtail(fish_scaled)
+```
+
+### K-moyennes
+
+Nous recherchons la meilleure valeur de *k* grâce à un graphique de profilage.
+
+<!--% Utiliser un graphique de profilage de k pour déterminer le nombre de groupes optimaux pour la méthode des k-moyennes. -->
+
+```{r profilek, record='RNP', arg='labels'}
+___
+```
+
+<!--% Interprétez ce graphique. -->
+
+```{r profilekcomment, output='asis'}
+select_answer(r"-{
+[] -   Le regroupement optimal selon le profilage est de *k* = 2.
+[] -   Le regroupement optimal selon le profilage est de *k* = 5 car la courbe remonte légèrement juste après.
+[] -   Pour *k* > 2, la courbe continue à diminuer, indiquant que des *k* plus importants restent pertinents.
+[] -  La courbe de profilage de *k* n'est pas à prendre comme vérité absolue, c'est juste une indication à utiliser dans le contexte de l'analyse.
+[] -   Nous choisissons de regrouper en *k* = 2 groupes par les k-moyennes.
+[] -   Nous choisissons de regrouper en *k* = 5 groupes avec les k-moyennes.
+[] -   Sachant cela, nous choisissons *k* = 7, afin d'avoir une comparaison optimale avec notre meilleure CAH (la CAH 2) et avec le nombre d'espèces qui est également de sept.}-")
+```
+
+<!--% Regroupez les observations par les k-moyennes avec le nombre de groupes choisis ci-dessus, à partir de `fish_scaled` (variables standardisées). Utilisez dix situation de départ différentes pour assurer votre résultat. Places le résultat dans `fish_kmn`. -->
+
+```{r kmean, record='RNP', arg='cluster'}
+set.seed(32763)
+fish_kmn <- ___(___, ___, ___)
+```
+
+Le regroupement par k-moyennes que nous avons obtenu est représenté dans le graphique ci-dessous pour les variables de longueur totale et de masse standardisées.
+
+<!--% Réalisez un graphique de votre regroupement par les k-moyennes avec `chart()` appliqué sur l'objet `fish_kmn`. Le choix des axes se fait en indiquant un vecteur de deux nombres dans l'argument `choices =` qui correpondent à l'index des colonnes du jeu de données. Faites en sorte d'avoir la longueur totale standardisée en X et la masse standardisée en Y. -->
+
+```{r plotkmn, record='RNP', arg='labels'}
+chart(___)
+```
+
+<!--# Comme pour la CAH, vous pouvez aussi tracer les graphiques d'autres paires de variables pour vous aider à visualiser ce que les k-moyennes ont réalisé. Cependant, effacez ces autres graphiques du document final pour garder un canevas propre. Vous pouvez aussi jongler avec d'autres valeurs de k pour "sentir" comment la méthode se comporte. -->
+
+<!--% Interprétez ce graphique. -->
+
+```{r plotkmncomment, output='asis'}
+select_answer(r"-{
+[] -   Le regroupement k-moyennes est similaire à la CAH 1.
+[] -   Le regroupement k-moyennes est similaire à la CAH 2
+[] -   Contrairement à la CAH, les k-moyennes capturent bien mieux la forme du nuage de points curvilinéaire des données.
+[] -   Comme pour la CAH, les k-moyennes ont tendance à saucisonner la courbe en segments de longueurs à peu près similaires.}-")
+```
+
+### Comparaison entre les k-moyennes et la CAH 2
+
+<!--% Commencez par préparer un jeu de données qui rassemble les regroupements CAH (en partant de `fish_cah`), augmenté du regroupement obtenu par les k-moyennes (variable `.cluster` ajoutée). Renommez ensuite `.cluster` en `kmeans` et assignez le résultat à `fish_cah_kmn`. -->
+
+```{r fishcahkmn, record='RODFS', object='fish_cah_kmn'}
+augment(data = ___, ___) %>.%
+  srename(., ___) ->
+  fish_cah_kmn
+```
+
+Le tableau de contingence entre CAH 2 et notre regroupement à l'aide des k-moyennes se trouve ci-dessous.
+
+<!--% Calculez le tableau de contingence entre "cah2" en lignes et "k-moyennes" en colonnes en utilisant `fish_cah_kmn`. -->
+
+```{r compacahkmn, record='RNA', arg='class,dim,dimnames'}
+___
+```
+
+<!--% Interprétez ce tableau. -->
+
+```{r compacahkmncomment, output='asis'}
+select_answer(r"-{
+[] -   Le regroupement k-moyennes concorde presque parfaitement à la CAH 2.
+[] -   Le regroupement k-moyennes est assez similaire à la CAH 2, mais des différences apparaissent toutefois dans trois des sept groupes k-moyennes (le 2, le 3 et le 5).
+[] -   Le regroupement k-moyennes ne concorde pas du tout avec CAH 2.}-")
+```
+
+### Comparaison entre les k-moyennes et la variable species
+
+<!--% Calculez la table de contingence entre "espèce" en lignes et "k-moyennes" en colonnes. -->
+
+```{r compaspkmn, record='RNA', arg='class,dim,dimnames'}
+___
+```
+
+<!--% Interprétez ce tableau. -->
+
+```{r compaspkmncomment, output='asis'}
+select_answer(r"-{
+[] -   Les k-moyennes forment des groupes assez représentatifs des espèces.
+[] -   Le regroupement des k-moyennes n'est pas représentatifs des espèces à part pour ses groupes 2 et 6.
+[] -   Le regroupement des k-moyennes n'est pas du tout représentatifs des espèces.
+[] -   La classification non supervisée par les k-moyennes apparaît comme une technique efficace pour classer dans des groupes connus d'avance.
+[] -   La classification non supervisée par les k-moyennes n'est pas la technique la plus adaptée pour classer dans des groupes connus d'avance (espèces).}-")
+```
+
+<!--% Dérivez le tableau de contingence en 3 à 5 phrases. -->
+
+# Discussion et conclusions
+
+<!--% Sélectionnez les items ci-dessous qui correspondent à une discussion de ce que vous avez obtenu dans la section résultats. -->
+
+```{r discu, output='asis'}
+select_answer(r"-{
+[] -   Les deux méthodes ont permis de séparer les données en groupes de tailles différentes de poissons.
+[] -   Seule la CAH a permis de réaliser des groupes de tailles de poissons.
+[] -   Seules les k-moyennes ont permis de réaliser des groupes de tailles de poissons.
+[] -   Aucune des deux méthodes n'a donné des groupes de tailles de poissons satisfaisants.
+[] -   Les résultats obtenus sont identiques entre les deux méthodes.
+[] -   Les résultats obtenus sont similaires entre les deux méthodes.
+[] -   Les résultats obtenus sont totalement différents entre les deux méthodes.
+[] -   Les regroupements sont également très représentatifs des espèces et peuvent servir pour classifier les poissons en fonction de leur variété.
+[] -   Les regroupements obtenus sont moyennement représentatifs des espèces. Cependant, ils ne le sont pas assez pour classifier les poissons en fonction de leur espèce.
+[] -   Les regroupements obtenus ne sont pas du tout représentatifs des espèces. Les techniques de classification non supervisées ne sont pas adaptées à l'établissement de classifieurs sur base de connaissances *a priori* (ici, l'espèce).
+[] -   Un modèle linéaire sur des données transformées (probablement en log) pour linéariser le nuage de points serait ici plus adapté pour représenter la variation de la taille par espèce.}-")
+```
+
+## Benchmark
+
+Les deux techniques CAH et k-moyennes sont-elles similaires en matière de besoin en ressources (temps de calcul et mémoire RAM) ? Le tableau ci-dessous reprend les résultats d'un benchmark sur nos données `fish`. À noter que pour les k-moyennes, une seule situation de départ est utilisée afin d'avoir une comparaison objective "un calcul *versus* un calcul".
+
+<!--% Comparez vos regroupements à l'aide de la CAH et des k-moyennes via un tableau de contingence à double entrée. -->
+
+```{r benchmark}
+bench::mark(
+  CAH = dissimilarity(fish_scaled, ~ ., method = "euclidean") |>
+    cluster(method = "complete"),
+  `k-moyennes` = k_means(fish_scaled, k = 7, nstart = 1),
+  check = FALSE
+) %>.%
+  sselect(., Méthode = expression,
+             Min = min, Médiane = median,
+             `Mémoire allouée` = mem_alloc) %>.%
+  smutate(., Méthode = as.character(Méthode)) %>.%
+  tabularise(.)
+```
+
+<!--% Concluez sur les besoins en ressources informatiques pour les deux techniques sur base des résultats de ce benchmark. -->
+
+```{r benchmarkcomment, output='asis'}
+select_answer(r"-{
+[] -   La CAH est plus rapide que les k-moyennes.
+[] -   Les k-moyennes se calculent plus rapidement que la CAH.
+[] -   La CAH nécessite beaucoup moins de mémoire RAM que les k-moyennes.
+[] -   Les k-moyennes nécessitent beaucoup moins de mémoire RAM que la CAH.
+[] -   Même pour un petit jeu de donnée comme `fish`, la CAH est meilleure du point de vue du besoin en ressources de calcul.
+[] -   Même pour un petit jeu de donnée comme `fish`, les k-moyennes sont meilleures du point de vue du besoin en ressources de calcul.
+[] -   Les différences observées sont toutefois sans importance pour un petit jeu de données comme le nôtre. En fait, il faudrait comparer avec des jeux de données bien plus importants qui donnent des temps de calcul ou d'allocation mémoire potentiellement problématiques (note : cela se confirme en pratique).}-")
+```
+
+<!--# Vérifiez que votre document compile à la fin (bouton 'Rendu'). Lancez les tests pour vérification (onglet 'Construire' -> bouton 'Construire tout'). Enfin, lisez attentivement le rapport final obtenu pour vous imprégner de la façon de présenter et d'interpréter vos analyses dans un document de type bloc-notes. -->
