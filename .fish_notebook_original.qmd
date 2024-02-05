@@ -119,7 +119,7 @@ sselect(___) %>.%
 
 <!--% Tracez le dendrogramme de ce premier regroupement `fish_clust1`. N'affichez pas les labels de l'axe X et indiquez "Hauteur" pour l'axe Y. Ajouter un trait horizontal rouge pour indiquer une coupure en cinq groupes qui est le niveau de coupure que vous retiendrez ici. -->
 
-<!--# Testez aussi d'autres combinaisons scale = TRUE/FALSE vs métrique vs méthode de lien pour voir l'effet sur le dendrogramme obtenu. À la fin, nettoyez vos essais et gardez seulement la version scale = TRUE, "euclidean" et "ward.D2" dans le document final. -->
+<!--# Testez aussi d'autres combinaisons scale = TRUE/FALSE vs métrique vs méthode de lien pour voir l'effet sur le dendrogramme obtenu. À la fin, nettoyez vos essais et gardez seulement la version scale = TRUE, "manhattan" et "ward.D2" dans le document final. -->
 
 ```{r dendro1, record='RNP', arg='labels'}
 chart(___) +
@@ -176,9 +176,9 @@ Les regroupements des deux CAH sont ajoutés dans le jeu de données `fish_cah`.
 
 ```{r fishcah, record='RODFS', object='fish_cah'}
 fish %>.%
-  augment(data = ___, ___, ___) %>.%
+  augment(data = ., ___, ___) %>.%
   srename(., ___) %>.%
-  augment(., ___) %>.%
+  augment(data = ., ___) %>.%
   srename(., ___) %>.%
   smutate(., ___) ->
   fish_cah
