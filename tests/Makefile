@@ -4,7 +4,7 @@ test :
 clean :
 	echo "Nettoyage des résultats et tests..."
 	rm -rf results
-	rm .cnt
+	rm -f .cnt
 	echo "✔︎ Nettoyage terminé. Réexécutez les scripts et les rendus Quarto."
 
 original :
@@ -16,7 +16,7 @@ original :
 	rm -rf ../fish_notebook_files
 	echo "  • Effacement des objets créés pour les tests..."
 	rm -rf results
-	rm .cnt
+	rm -f .cnt
 	echo "✔︎ Documents originaux installés."
 
 solution :
@@ -32,7 +32,7 @@ solution :
 	rm -rf ../fish_notebook_files
 	echo "  • Effacement des objets créés pour les tests..."
 	rm -rf results
-	rm .cnt
+	rm -f .cnt
 	echo "✔︎ Solution installée. Réexécutez les scripts et les rendus Quarto."
 
 prepare :
@@ -48,7 +48,7 @@ prepare :
 	rm -rf ../fish_notebook_files
 	echo "  • Effacement des objets créés pour les tests..."
 	rm -rf results
-	rm .cnt
+	rm -f .cnt
 	echo "✔︎ Préparation terminée !"
 	# Note: ceci ne fonctionne pas... il faudra encore déterminer la bonne procédure !
 	#echo "Note : pensez à faire un soft reset de la branche de travail :"
