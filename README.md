@@ -28,6 +28,4 @@ en statistiques multivariées en développant les compétences suivantes :
 Réalisez une exploration multivariée de données mesurées sur des poissons issus d'un marché matinal.
 Complétez le fichier `fish_notebook.qmd`.
 
-N'oubliez pas de "knitter" vos documents en HTML à la fin pour vérifier que tout fonctionne bien, et corrigez les erreurs éventuelles rencontrées à ce stade avant de clôturer votre travail. Vérifiez également que votre dernier commit a bien été pushé sur GitHub avant la deadline.
-
-Ce projet correspond au template <https://github.com/BioDataScience-Course/B06Ia_fish_market>
+N'oubliez pas de réaliser un "Rendu" de vos documents en HTML à la fin pour vérifier que tout fonctionne bien et utilisez les tests à disposition dans l'onglet "Construire" -> bouton "Construire tout". Corrigez les erreurs éventuelles rencontrées à ce stade avant de clôturer votre travail. Vérifiez également que votre dernier commit a bien été pushé sur GitHub avant la deadline.
