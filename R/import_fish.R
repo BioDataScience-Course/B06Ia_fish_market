@@ -14,7 +14,7 @@ fish <- read("data/raw/fish.csv")
 # par des "bullet-points" .= et qui utilise l'évaluation standard dans les
 # fonctions "speedy". Ce code devrait être compréhensible, même pour ceux qui
 # sont habitué à l'ancienne syntaxe ou au {tidyverse}.
-{
+fish <- {
   .= fish
   .= janitor::clean_names(.)
   .= srename(., standard_length = 'length1',
@@ -23,7 +23,7 @@ fish <- read("data/raw/fish.csv")
   .= smutate(., species = as.factor(.$species))
   .= setattr(., 'spec', NULL)
   .= setattr(., 'problems', NULL)
-} -> fish
+} |> local()
 # L'équivalent en tidyverse s'écrit:
 #fish <- fish %>%
 #  janitor::clean_names() %>%
@@ -65,4 +65,4 @@ fish <- labelise(fish,
 
 # Sauvegarde du jeu de données et nettoyage de l'environnement
 write$rds(fish, "data/fish.rds", compress = "xz")
-rm(fish, .)
+rm(fish)

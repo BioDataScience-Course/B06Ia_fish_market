@@ -1,8 +1,6 @@
 # Poissons sur le marché matinal
 
-## Avant-propos
-
-Ce projet nécessite d’avoir assimilé l’ensemble des notions du sixième modules
+Ce projet nécessite d’avoir assimilé l’ensemble des notions du sixième module
 du cours de science des données biologiques 2. Il correspond au dépôt GitHub
 <https://github.com/BioDataScience-Course/B06Ia_fish_market>. Il est distribué
 sous licence [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
@@ -16,7 +14,7 @@ mesures morphométriques sur sept espèces de poissons prélevés sur un marché
 ## Objectifs
 
 Ce projet est individuel et cadré. Il vous permet de compléter vos compétences
-en statistiques multivariées en développant les compétences suivantes :
+en statistiques multivariées en développant les aptitudes suivantes :
 
 -   Pouvoir calculer des matrices de distances avec un indice de distance judicieusement choisi
 -   Être capable de réaliser des dendrogrammes (CAH) avec la méthode de liens la plus adéquate et les interpréter
@@ -28,4 +26,4 @@ en statistiques multivariées en développant les compétences suivantes :
 Réalisez une exploration multivariée de données mesurées sur des poissons issus d'un marché matinal.
 Complétez le fichier `fish_notebook.qmd`.
 
-N'oubliez pas de réaliser un "Rendu" de vos documents en HTML à la fin pour vérifier que tout fonctionne bien et utilisez les tests à disposition dans l'onglet "Construire" -> bouton "Construire tout". Corrigez les erreurs éventuelles rencontrées à ce stade avant de clôturer votre travail. Vérifiez également que votre dernier commit a bien été pushé sur GitHub avant la deadline.
+N'oubliez pas de réaliser un "Rendu" de vos documents en HTML à la fin pour vérifier que tout fonctionne bien (attention : si le document ne compile pas sans erreurs, vous n'aurez pas de points pour ce projet) et utilisez les tests à disposition dans l'onglet "Construire" -> bouton "Construire tout". Corrigez les erreurs éventuelles rencontrées à ce stade avant de clôturer votre travail. Vérifiez également que votre dernier commit a bien été pushé sur GitHub avant la deadline.
