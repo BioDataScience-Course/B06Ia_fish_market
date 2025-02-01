@@ -336,7 +336,7 @@ test_that("Chunk 'prepakmn' : préparation des données pour les k-moyennes", {
 test_that("Chunks 'profilek', 'kmean', 'plotkmn', 'plotkmncomment' : regroupement par les k-moyennes", {
   expect_true(is_identical_to_ref("profilek"))
   # Le graphique de profilage de k n'est pas réalisé ou n'est pas celui attendu.
-  # Vérifez que vous utilisez la fonction profile_k() sur vos données
+  # Vérifiez que vous utilisez la fonction profile_k() sur vos données
   # standardisées `fish_scaled`.
 
   expect_true(is_identical_to_ref("kmean"))

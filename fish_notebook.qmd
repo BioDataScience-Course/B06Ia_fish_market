@@ -21,7 +21,7 @@ La valeur d'un poisson sur un marché dépend de son espèce mais aussi de la qu
 
 Le jeu de données est issu de <https://www.kaggle.com/datasets/vipullrathod/fish-market/data> ou il est disponible sous licence CC0 (domaine public). L'origine précise des données et le ou les auteurs des mesures ne sont pas connus.
 
-Nous utilisons deux techniques statistiques pour regrouper les poissons en fonction de leurs caractéristiques morphologiques : la classification ascendante hiérarchique (CAH) et les k-moyennes. L'analyse est réalisée avec le logiciel R (`r R.version.string`) et en particulier le package {exploreit} version `r packageVersion("exploreit")` dans la [SciViews Box 2023](https://www.sciviews.org/software/svbox/). [Saturn Cloud](https://saturncloud.io/) (Linux Ubuntu 22.04) est utilisé pour exécuter le code et compiler ce bloc-notes.
+Nous utilisons deux techniques statistiques pour regrouper les poissons en fonction de leurs caractéristiques morphologiques : la classification ascendante hiérarchique (CAH) et les k-moyennes. L'analyse est réalisée avec le logiciel R (`r R.version.string`) et en particulier le package {exploreit} version `r packageVersion("exploreit")` dans la [SciViews Box 2024](https://www.sciviews.org/software/svbox/). [Saturn Cloud](https://saturncloud.io/) (Linux Ubuntu 22.04) est utilisé pour exécuter le code et compiler ce bloc-notes.
 
 # Résultats
 
@@ -44,7 +44,7 @@ Notre jeu de donnée comporte sept variables (premières et dernière lignes du 
 
 <!--% Réalisez un tableau de type "headtail" sur `fish`. -->
 
-```{r tab, record='RNP', arg='col_keys'}
+```{r tab, warning=FALSE, record='RNP', arg='col_keys'}
 tabularise$___
 ```
 
@@ -78,7 +78,7 @@ La variation de masse en fonction de la taille totale pour les sept espèces de 
 
 <!--% Faites le graphique de la masse en fonction de la longueur totale en utilisant la couleur pour l'espèce à partir de `fish`. -->
 
-```{r plot1, record='RNP', arg='labels'}
+```{r plot1, record='RNCS'}
 chart(data = fish, ___) +
   ___
 ```
@@ -121,7 +121,7 @@ sselect(___) %>.%
 
 <!--# Testez aussi d'autres combinaisons scale = TRUE/FALSE vs métrique vs méthode de lien pour voir l'effet sur le dendrogramme obtenu. À la fin, nettoyez vos essais et gardez seulement la version scale = TRUE, "manhattan" et "ward.D2" dans le document final. -->
 
-```{r dendro1, record='RNP', arg='labels'}
+```{r dendro1, record='RNCS'}
 chart(___) +
   ___
 ```
@@ -151,7 +151,7 @@ ___ ->
 
 <!--% Tracez le dendrogramme de `fish_clust2` avec les mêmes caractéristiques que le précédent. Choisissez le niveau de coupure pour obtenir sept groupes (niveau de coupure retenu). -->
 
-```{r dendro2, record='RNP', arg='labels'}
+```{r dendro2, record='RNCS'}
 chart(___) +
   ___
 ```
@@ -210,14 +210,14 @@ Ci-dessous, une visualisation des regroupements CAH 1 et CAH 2 pour les variable
 
 <!--# Vous pouvez aussi regarder ce que cela donne avec d'autres pairs de variables pour bien visualiser le processus de regroupement, mais effacez ces essais du document final. -->
 
-```{r plotcah1, record='RNP', arg='labels'}
+```{r plotcah1, record='RNCS'}
 chart(___) +
   ___
 ```
 
 <!--% Faites de même pour la CAH 2. -->
 
-```{r plotcah2, record='RNP', arg='labels'}
+```{r plotcah2, record='RNCS'}
 chart(___) +
   ___
 ```
@@ -271,7 +271,7 @@ Un jeu contenant uniquement les données numériques standardisées est créé.
 
 <!--% À partir des données de `fish` dont vous éliminez la colonne `species`, calculez les variables standardisées (moyenne = 0, écart type = 1) à l'aide de `scale()`. Ensuite relabélisez correctement les variables et placez le résultat dans `fish_scaled`. -->
 
-```{r prepakmn, record='RODFS', object='fish_scaled'}
+```{r prepakmn, warning=FALSE, record='RODFS', object='fish_scaled'}
 sselect(___) %>.%
   ___(.) %>.%
   labelise(., label = list(
@@ -293,6 +293,7 @@ Nous recherchons la meilleure valeur de *k* grâce à un graphique de profilage.
 <!--% Utiliser un graphique de profilage de k pour déterminer le nombre de groupes optimaux pour la méthode des k-moyennes. -->
 
 ```{r profilek, record='RNP', arg='labels'}
+set.seed(1854)
 ___
 ```
 
@@ -409,7 +410,7 @@ Les deux techniques CAH et k-moyennes sont-elles similaires en matière de besoi
 
 <!--% Comparez vos regroupements à l'aide de la CAH et des k-moyennes via un tableau de contingence à double entrée. -->
 
-```{r benchmark}
+```{r benchmark, warning=FALSE}
 bench::mark(
   CAH = dissimilarity(fish_scaled, ~ ., method = "euclidean") |>
     cluster(method = "complete"),
