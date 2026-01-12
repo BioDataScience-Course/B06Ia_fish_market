@@ -21,18 +21,31 @@ La valeur d'un poisson sur un marché dépend de son espèce mais aussi de la qu
 
 Le jeu de données est issu de <https://www.kaggle.com/datasets/vipullrathod/fish-market/data> ou il est disponible sous licence CC0 (domaine public). L'origine précise des données et le ou les auteurs des mesures ne sont pas connus.
 
-Nous utilisons deux techniques statistiques pour regrouper les poissons en fonction de leurs caractéristiques morphologiques : la classification ascendante hiérarchique (CAH) et les k-moyennes. L'analyse est réalisée avec le logiciel R (`r R.version.string`) et en particulier le package {exploreit} version `r packageVersion("exploreit")` dans la [SciViews Box 2024](https://www.sciviews.org/software/svbox/). [Saturn Cloud](https://saturncloud.io/) (Linux Ubuntu 22.04) est utilisé pour exécuter le code et compiler ce bloc-notes.
-
-# Résultats
+Nous utilisons deux techniques statistiques pour regrouper les poissons en fonction de leurs caractéristiques morphologiques : la classification ascendante hiérarchique (CAH) et les k-moyennes. L'analyse est réalisée avec le logiciel R (`r R.version.string`) et en particulier le package {exploreit} version `r packageVersion("exploreit")` dans la [SciViews Box 2025](https://www.sciviews.org/software/svbox/). [Saturn Cloud](https://saturncloud.io/) (Linux Ubuntu 22.04) est utilisé pour exécuter le code et compiler ce bloc-notes.
 
 ```{r setup, include=FALSE}
 # Ceci est nécessaire pour les tests SDD, ne pas utiliser dans un "vrai" projet
 if (!"tools:tests" %in% search())
   source(here::here("tests/tools_tests.R"), attach(NULL, name = "tools:tests"))
 
+# Configure Knitr pour utiliser AGG comme périphérique graphique
+knitr::opts_chunk$set(dev = "ragg_png")
+
 # Configuration de l'environnement SciViews::R
 SciViews::R(___, lang = "fr")
 ```
+
+<!--% Spécifier si vous avez employé l'intelligence artificielle dans votre projet. -->
+
+```{r ai_comment, output='asis'}
+select_answer(r"-{
+[] -   Ce document a été rédigé en étant assité par l'Intelligence Artificielle.
+[] -   Ce document a été rédigé sans recours à l'Intelligence Artificielle.}-")
+```
+
+<!-- Précisez ci-dessous l'utilisation que vous avez faite de l'IA. Citez le modèle utilisé. -->
+
+# Résultats
 
 <!--% Importez les données depuis `fish.rds` dans le dossier `data` et assignez le résultat à `fish`.-->
 
@@ -40,7 +53,7 @@ SciViews::R(___, lang = "fr")
 fish <- read(___)
 ```
 
-Notre jeu de donnée comporte sept variables (premières et dernière lignes du jeu de données dans le tableau suivant).
+Notre jeu de données comporte sept variables (premières et dernières lignes du jeu de données dans le tableau suivant).
 
 <!--% Réalisez un tableau de type "headtail" sur `fish`. -->
 
@@ -84,6 +97,8 @@ chart(data = fish, ___) +
 ```
 
 <!--# À ce stade, vous pouvez aussi essayer des transformations des données et visualiser les graphiques d'autres pairs de variables pour vous faire une idée, mais ne conservez pas ces essais dans le document final. -->
+
+<!--# Avant d'aller plus loin, avez-vous pris le temps de vous intéresser aux 7 espèces de poissons afin d'avoir une idée de leur morphologie ? -->
 
 <!--% Interprétez votre graphique ci-dessous. -->
 
@@ -228,7 +243,7 @@ chart(___) +
 select_answer(r"-{
 [] -   Le regroupement CAH1 représente mieux la distribution des données sur ce graphique.
 [] -   Le regroupement CAH2 représente mieux la distribution des données sur ce graphique.
-[] -   La CAH n'est pas très efficace lorsque le nuage de point s'étale de manière continue. Elle a tendance à saucisonner la distribution en sections de longueurs similaires.}-")
+[] -   La CAH n'est pas très efficace lorsque le nuage de point s'étale de manière continue. Elle a tendance à saucissonner la distribution en sections de longueurs similaires.}-")
 ```
 
 ### Comparaison entre les CAH et la variable species
@@ -254,7 +269,7 @@ select_answer(r"-{
 [] -   Les deux CAH forment des groupes assez représentatifs des espèces.
 [] -   Seule la première CAH a des groupes représentatifs des espèces.
 [] -   Seule la seconde CAH a des groupes représentatifs des espèces.
-[] -  Aucune des deux CAH n'a réalisé des regroupement représentatifs des différentes espèces.
+[] -  Aucune des deux CAH n'a réalisé des regroupements représentatifs des différentes espèces.
 [] -   La classification non supervisée apparaît comme une technique efficace pour classer dans des groupes connus d'avance.
 [] -   La classification non supervisée n'est pas la technique la plus adaptée pour classer dans des groupes connus d'avance.}-")
 ```
@@ -334,7 +349,7 @@ select_answer(r"-{
 [] -   Le regroupement k-moyennes est similaire à la CAH 1.
 [] -   Le regroupement k-moyennes est similaire à la CAH 2
 [] -   Contrairement à la CAH, les k-moyennes capturent bien mieux la forme du nuage de points curvilinéaire des données.
-[] -   Comme pour la CAH, les k-moyennes ont tendance à saucisonner la courbe en segments de longueurs à peu près similaires.}-")
+[] -   Comme pour la CAH, les k-moyennes ont tendance à saucissonner la courbe en segments de longueurs à peu près similaires.}-")
 ```
 
 ### Comparaison entre les k-moyennes et la CAH 2
@@ -360,7 +375,7 @@ ___
 ```{r compacahkmncomment, output='asis'}
 select_answer(r"-{
 [] -   Le regroupement k-moyennes concorde presque parfaitement à la CAH 2.
-[] -   Le regroupement k-moyennes est assez similaire à la CAH 2, mais des différences apparaissent toutefois dans trois des sept groupes k-moyennes (le 2, le 3 et le 5).
+[] -   Le regroupement k-moyennes est assez similaire à la CAH 2, mais des différences apparaissent toutefois dans quatre des sept groupes k-moyennes (le 2, le 3, le 5 et le 6).
 [] -   Le regroupement k-moyennes ne concorde pas du tout avec CAH 2.}-")
 ```
 
@@ -395,12 +410,15 @@ select_answer(r"-{
 [] -   Seule la CAH a permis de réaliser des groupes de tailles de poissons.
 [] -   Seules les k-moyennes ont permis de réaliser des groupes de tailles de poissons.
 [] -   Aucune des deux méthodes n'a donné des groupes de tailles de poissons satisfaisants.
+
 [] -   Les résultats obtenus sont identiques entre les deux méthodes.
 [] -   Les résultats obtenus sont similaires entre les deux méthodes.
 [] -   Les résultats obtenus sont totalement différents entre les deux méthodes.
+
 [] -   Les regroupements sont également très représentatifs des espèces et peuvent servir pour classifier les poissons en fonction de leur variété.
 [] -   Les regroupements obtenus sont moyennement représentatifs des espèces. Cependant, ils ne le sont pas assez pour classifier les poissons en fonction de leur espèce.
-[] -   Les regroupements obtenus ne sont pas du tout représentatifs des espèces. Les techniques de classification non supervisées ne sont pas adaptées à l'établissement de classifieurs sur base de connaissances *a priori* (ici, l'espèce).
+[] -   Les regroupements obtenus ne sont pas du tout représentatifs des espèces. 
+[] - Les techniques de classification non supervisées  (cah et k-moyennes) ne sont pas les plus adaptées à l'établissement de classifieurs sur base de connaissances *a priori* (ici, l'espèce).
 [] -   Un modèle linéaire sur des données transformées (probablement en log) pour linéariser le nuage de points serait ici plus adapté pour représenter la variation de la taille par espèce.}-")
 ```
 

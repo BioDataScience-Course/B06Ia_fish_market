@@ -1,6 +1,9 @@
 # Vérifications de fish_notebook.qmd
-fish <- parse_rmd("../../fish_notebook.qmd",
-  allow_incomplete = TRUE, parse_yaml = TRUE)
+fish <- parse_rmd(
+  "../../fish_notebook.qmd",
+  allow_incomplete = TRUE,
+  parse_yaml = TRUE
+)
 
 test_that("Le bloc-notes est-il compilé en un fichier final HTML ?", {
   expect_true(is_rendered("fish_notebook.qmd"))
@@ -21,15 +24,27 @@ test_that("Le bloc-notes est-il compilé en un fichier final HTML ?", {
 })
 
 test_that("La structure du document est-elle conservée ?", {
-  expect_true(all(c("Introduction et but", "Matériel et méthodes",
-    "Résultats", "Étude descriptive", "Regroupement par CAH", "CAH 1", "CAH 2",
-    "Comparaison des deux regroupements CAH",
-    "Comparaison entre les CAH et la variable species",
-    "Regroupement par les k-moyennes", "Préparation des données", "K-moyennes",
-    "Comparaison entre les k-moyennes et la CAH 2",
-    "Comparaison entre les k-moyennes et la variable species",
-    "Discussion et conclusions", "Benchmark")
-    %in% (rmd_node_sections(fish) |> unlist() |> unique())))
+  expect_true(all(
+    c(
+      "Introduction et but",
+      "Matériel et méthodes",
+      "Résultats",
+      "Étude descriptive",
+      "Regroupement par CAH",
+      "CAH 1",
+      "CAH 2",
+      "Comparaison des deux regroupements CAH",
+      "Comparaison entre les CAH et la variable species",
+      "Regroupement par les k-moyennes",
+      "Préparation des données",
+      "K-moyennes",
+      "Comparaison entre les k-moyennes et la CAH 2",
+      "Comparaison entre les k-moyennes et la variable species",
+      "Discussion et conclusions",
+      "Benchmark"
+    ) %in%
+      (rmd_node_sections(fish) |> unlist() |> unique())
+  ))
   # Les sections (titres) attendues du bloc-notes ne sont pas toutes présentes
   # Ce test échoue si vous avez modifié la structure du document, un ou
   # plusieurs titres indispensables par rapport aux exercices ont disparu ou ont
@@ -37,14 +52,47 @@ test_that("La structure du document est-elle conservée ?", {
   # d'origine dans le dépôt "template" du document (lien au début du fichier
   # README.md).
 
-  expect_true(all(c("setup", "import", "tab", "skim", "skimcomment", "plot1",
-    "plot1comment", "cluster1", "dendro1", "dendro1comment", "cluster2",
-    "dendro2", "dendro2comment","fishcah", "compacah", "compacahcomment",
-    "plotcah1", "plotcah2", "plotcahcomment", "compacah1sp", "compacah2sp",
-    "compacahcomment", "prepakmn", "profilek", "kmean", "plotkmn",
-    "plotkmncomment", "fishcahkmn", "compacahkmn", "compacahkmncomment",
-    "compaspkmn", "compaspkmncomment", "discu", "benchmark", "benchmarkcomment")
-    %in% rmd_node_label(fish)))
+  expect_true(all(
+    c(
+      "setup",
+      "ai_comment",
+      "import",
+      "tab",
+      "skim",
+      "skimcomment",
+      "plot1",
+      "plot1comment",
+      "cluster1",
+      "dendro1",
+      "dendro1comment",
+      "cluster2",
+      "dendro2",
+      "dendro2comment",
+      "fishcah",
+      "compacah",
+      "compacahcomment",
+      "plotcah1",
+      "plotcah2",
+      "plotcahcomment",
+      "compacah1sp",
+      "compacah2sp",
+      "compacahcomment",
+      "prepakmn",
+      "profilek",
+      "kmean",
+      "plotkmn",
+      "plotkmncomment",
+      "fishcahkmn",
+      "compacahkmn",
+      "compacahkmncomment",
+      "compaspkmn",
+      "compaspkmncomment",
+      "discu",
+      "benchmark",
+      "benchmarkcomment"
+    ) %in%
+      rmd_node_label(fish)
+  ))
   # Un ou plusieurs labels de chunks nécessaires à l'évaluation manquent
   # Ce test échoue si vous avez modifié la structure du document, un ou
   # plusieurs chunks indispensables par rapport aux exercices sont introuvables.
@@ -150,6 +198,7 @@ test_that("Chunks 'cluster1', 'dendro1', 'dendro1comment' : CAH 1", {
   # Avez-vous ajouté la ligne de coupure en rouge avec geom_dendroline() ?
   # Cette ligne de coupure est-elle bien placée de telle manière qu'elle sépare
   # le jeu de données en cinq groupes ?
+  # Le niveau de coupe que nous avons employé est une hauteur de 18.
 
   expect_true(is_identical_to_ref("dendro1comment"))
   # L'interprétation du premier dendrogramme est (partiellement) fausse dans le
@@ -181,6 +230,7 @@ test_that("Chunks 'cluster2', 'dendro2', 'dendro2comment' : CAH 2", {
   # Avez-vous ajouté la ligne de coupure en rouge avec geom_dendroline() ?
   # Cette ligne de coupure est-elle bien placée de telle manière qu'elle sépare
   # le jeu de données en sept groupes ?
+  # Le niveau de coupe que nous avons employé est une hauteur de 3.
 
   expect_true(is_identical_to_ref("dendro2comment"))
   # L'interprétation du second dendrogramme est (partiellement) fausse dans le
